@@ -25,12 +25,19 @@ public class CategoryService {
         }
     }
 
-
     public Category getCategoryById(Long categoryId){
         try{
             return categoryDAO.selectCategoryById(categoryId);
         }catch (Exception e){
             throw new RuntimeException("Không thể lấy danh mục có ID: " + categoryId, e);
+        }
+    }
+
+    public boolean createCategory(Category category){
+        try{
+            return categoryDAO.createCategory(category);
+        }catch (SQLException e){
+            throw new RuntimeException(e);
         }
     }
 }

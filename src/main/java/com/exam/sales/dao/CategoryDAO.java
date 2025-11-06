@@ -61,4 +61,18 @@ public class CategoryDAO {
         }
         return category;
     }
+
+    public boolean createCategory(Category category) throws SQLException {
+        try (
+                Connection conn = ConnectionUtil.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(INSERT_CATEGORY)
+        ){
+            stmt.setString(1, category.getType());
+            stmt.setString(2, category.getDescription());
+
+            return stmt.executeUpdate() > 0;
+        }catch (Exception e){
+            throw new SQLException("Lỗi khi thêm danh mục mới ", e);
+        }
+    }
 }
