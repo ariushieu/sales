@@ -24,4 +24,13 @@ public class CategoryService {
             throw new RuntimeException("Không thể lấy danh sách danh mục.", e);
         }
     }
+
+
+    public Category getCategoryById(Long categoryId){
+        try{
+            return categoryDAO.selectCategoryById(categoryId);
+        }catch (Exception e){
+            throw new RuntimeException("Không thể lấy danh mục có ID: " + categoryId, e);
+        }
+    }
 }

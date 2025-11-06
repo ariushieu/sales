@@ -1,4 +1,4 @@
-package com.exam.sales.controller;
+package com.exam.sales.controller.Category;
 
 import com.exam.sales.model.Category;
 import com.exam.sales.service.CategoryService;
@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/categories")
-public class CategoryController extends HttpServlet {
+public class getAllCategoryController extends HttpServlet {
     private CategoryService categoryService;
 
     @Override
@@ -31,4 +31,6 @@ public class CategoryController extends HttpServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/categories-list.jsp");
         dispatcher.forward(req, resp);
     }
+
+
 }

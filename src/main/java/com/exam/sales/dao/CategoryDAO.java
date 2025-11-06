@@ -34,7 +34,7 @@ public class CategoryDAO {
                 PreparedStatement stmt = conn.prepareStatement(SELECT_ALL_CATEGORIES);
                 ResultSet rs = stmt.executeQuery();
         ) {
-            while (rs.next()){
+            while (rs.next()) {
                 categories.add(extractCategoryFromResultSet(rs));
             }
 
@@ -42,5 +42,23 @@ public class CategoryDAO {
             throw new SQLException("Lỗi truy vấn tất cả danh mục.", e);
         }
         return categories;
+    }
+
+    public Category selectCategoryById(Long categoryId) throws SQLException {
+        Category category = null;
+        try (
+                Connection conn = ConnectionUtil.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(SELECT_CATEGORY_BY_ID);
+        ) {
+            stmt.setLong(1, categoryId);
+            try (ResultSet rs = stmt.executeQuery();) {
+                if (rs.next()) {
+                    category = extractCategoryFromResultSet(rs);
+                }
+            }
+        } catch (Exception e) {
+            throw new SQLException("Lỗi truy vấn danh mục có ID: " + categoryId, e);
+        }
+        return category;
     }
 }
