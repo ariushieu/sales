@@ -1,5 +1,7 @@
 package com.exam.sales.model;
 
+import com.exam.sales.util.enums.UserRoleEnum;
+
 import java.io.Serializable;
 
 public class User implements Serializable {
@@ -11,10 +13,11 @@ public class User implements Serializable {
     private String address;
     private String phone;
     private String email;
-    private String role;
+    private UserRoleEnum role;
 
     public User() {}
-    public User(Long userId, String username, String password, String fullname, String address, String phone, String email, String role) {
+
+    public User(Long userId, String username, String password, String fullname, String address, String phone, String email, UserRoleEnum role) {
         this.userId = userId;
         this.username = username;
         this.password = password;
@@ -25,7 +28,7 @@ public class User implements Serializable {
         this.role = role;
     }
 
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
@@ -81,11 +84,11 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public String getRole() {
+    public UserRoleEnum getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(UserRoleEnum role) {
         this.role = role;
     }
 }
